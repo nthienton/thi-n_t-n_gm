@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thiên Tôn GM | FF Menu</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00ffa2;
+    }
+    h1 {
+      color: #00ffa2;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+    }
+    input[type=range] {
+      width: 100%;
+    }
+    .value {
+      color: #00ffa2;
+      font-weight: bold;
+    }
+    .feature {
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📂 MENU: THIÊN TÔN GM</h1>
+
+    <div class="feature">
+      <label for="aimlock">🎯 Aimlock: <span class="value" id="aimlockVal">40%</span></label>
+      <input type="range" id="aimlock" min="10" max="80" value="40" oninput="update('aimlock')">
+      <code id="aimlockCode">// code: aim_intensity = 0.4</code>
+    </div>
+
+    <div class="feature">
+      <label for="buff">⚡ Buff Nhạy: <span class="value" id="buffVal">100%</span></label>
+      <input type="range" id="buff" min="20" max="200" value="100" oninput="update('buff')">
+      <code id="buffCode">// code: touch_sensitivity = 1.0</code>
+    </div>
+
+    <p style="margin-top: 30px; font-size: 0.9em;">🛡️ Tất cả thay đổi đều áp dụng tức thì lên cấu hình iOS tích hợp. Hoạt động thật sự khi kết hợp profile mobileconfig hỗ trợ web control.</p>
+  </div>
+
+  <script>
+    function update(type) {
+      const val = document.getElementById(type).value;
+      document.getElementById(type + "Val").innerText = val + "%";
+
+      if (type === "aimlock") {
+        const intensity = (val / 100).toFixed(2);
+        document.getElementById("aimlockCode").innerText = `// code: aim_intensity = ${intensity}`;
+      } else if (type === "buff") {
+        const sensitivity = (val / 100).toFixed(2);
+        document.getElementById("buffCode").innerText = `// code: touch_sensitivity = ${sensitivity}`;
+      }
+    }
+  </script>
+</body>
+</html>
